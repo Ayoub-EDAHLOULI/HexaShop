@@ -138,3 +138,76 @@ image-grid{
 .overlay button:hover{
     background-color: #0056b3;
 }
+.men-latest {
+    padding: 50px;
+    background-color: #f4f4f4;
+}
+
+.men-latest h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.men-latest p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    flex: 0 0 300px; /* Adjust width as needed */
+    margin-right: 20px;
+    text-align: center;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.carousel-item h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.carousel-item p {
+    font-size: 16px;
+    color: #333;
+}
+
+.rating {
+    margin-top: 5px;
+    color: gold;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    z-index: 1;
+}
+
+.carousel-control.prev {
+    left: 0;
+}
+
+.carousel-control.next {
+    right: 0;
+}
