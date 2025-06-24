@@ -300,3 +300,89 @@ image-grid{
 .product-card:hover {
     transform: scale(1.05);
 }
+
+/* styles.css */
+
+/* Newsletter Section */
+.newsletter-section {
+    display: flex;
+    gap: 50px;
+    padding: 50px;
+    background-color: #f4f4f4;
+}
+
+.newsletter-content {
+    flex: 1;
+}
+
+.newsletter-content h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.newsletter-content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 10px;
+}
+
+.newsletter-form input[type="text"],
+.newsletter-form input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1;
+}
+
+.newsletter-form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: #000;
+}
+
+.newsletter-form button i {
+    font-size: 18px;
+}
+
+.contact-info {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.info-block {
+    text-align: center;
+}
+
+.info-block h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.info-block p {
+    font-size: 16px;
+    color: #666;
+}
+
+.info-block a {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-block a:hover {
+    color: #0056b3;
+}
