@@ -34,3 +34,29 @@ overlayButtons.forEach(button => {
         }
     });
 });
+
+const carouselContainer = document.querySelector('.carousel-container');
+const prevButton = document.querySelector('.carousel-control.prev');
+const nextButton = document.querySelector('.carousel-control.next');
+const carouselItems = document.querySelectorAll('.carousel-item');
+
+let currentIndex = 0;
+const itemWidth = carouselItems[0].offsetWidth + 20;
+
+function updateCarousel(index) {
+    carouselContainer.style.transform = `translateX(-${index * itemWidth}px)`;
+}
+
+prevButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel(currentIndex);
+    }
+});
+
+nextButton.addEventListener('click', () => {
+    if (currentIndex < carouselItems.length - 3) {
+        currentIndex++;
+        updateCarousel(currentIndex);
+    }
+});
