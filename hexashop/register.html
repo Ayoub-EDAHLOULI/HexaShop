@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>HexaShop | Register</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+</head>
+
+<body>
+    <header id="header">
+        <a href="index.html"><img src="assets/images/other/hexashopLogo.png" class="logo" alt="HexaShop Logo"></a>
+        <nav>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="account-dropdown-logged-out" class="account-dropdown">
+                    <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </li>
+                <li id="account-dropdown-logged-in" class="account-dropdown">
+                    <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="update_profile.html">Edit Profile</a></li>
+                        <li><a href="#" id="logout-link">Logout</a></li>
+                    </ul>
+                </li>
+                <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
+            </ul>
+        </nav>
+        <div id="mobile">
+            <a href="bag.html" aria-label="Shopping Bag"><i class="fas fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent" aria-label="Open Menu"></i>
+        </div>
+    </header>
+
+    <section id="form-details" class="section-p1">
+        <form action="#" method="POST">
+            <span>CREATE AN ACCOUNT</span>
+            <h2>Register for a New Account</h2>
+            <label for="name" class="sr-only">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email" class="sr-only">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="E-mail" required>
+
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            
+            <label for="confirm-password" class="sr-only">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+
+            <button type="submit" class="normal">Register</button>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </form>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img src="assets/images/other/hexashopLogo.png" class="logo" alt="HexaShop Logo">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> 123 Hexa Street, City, Country</p>
+            <p><strong>Phone:</strong> <a href="tel:+1234567890">+123 456 7890</a></p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Follow us on Pinterest"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" aria-label="Follow us on YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="assets/images/pay/play.jpg" alt="Download on Google Play">
+                <img src="assets/images/pay/app.jpg" alt="Download on App Store">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="assets/images/pay/pay.png" alt="Payment Methods: Visa, Mastercard, PayPal">
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 HexaShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.querySelector('#form-details form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            const userExists = users.some(user => user.email === email);
+
+            if (userExists) {
+                alert('This email is already registered. Please use a different email or login.');
+            } else {
+                users.push({ name: name, email: email, password: password });
+                localStorage.setItem('users', JSON.stringify(users));
+                alert('Registration successful! You can now login.');
+                updateAccountDropdowns();
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+[
+  {
+    "id": "f1",
+    "name": "New Look T-Shirt",
+    "category": "Casual",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/f1.jpg",
+    "description": "This Men's Fashion T-Shirt is crafted from premium, breathable cotton, offering ultimate comfort and style. Featuring a modern fit and durable stitching, it's perfect for everyday wear or a casual outing. Available in multiple sizes and designed to maintain its shape and color after washing."
+  },
+  {
+    "id": "f2",
+    "name": "Modern Fit Shirt",
+    "category": "Casual",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/f2.jpg",
+    "description": "A versatile and comfortable casual shirt with a modern fit, ideal for various occasions. Made from high-quality fabric that ensures breathability and durability."
+  },
+  {
+    "id": "f3",
+    "name": "Floral Summer Dress",
+    "category": "Dress",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/f3.jpg",
+    "description": "Embrace the summer with this elegant floral dress. Its lightweight material and vibrant print make it a perfect choice for sunny days and outdoor events."
+  },
+  {
+    "id": "f4",
+    "name": "Classic Denim Jacket",
+    "category": "Outerwear",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/f4.jpg",
+    "description": "A timeless classic, this denim jacket offers both style and comfort. Perfect for layering, it's a durable piece that complements any casual outfit."
+  },
+  {
+    "id": "f5",
+    "name": "Striped Polo Shirt",
+    "category": "Polo",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/f5.jpg",
+    "description": "Elevate your casual look with this stylish striped polo shirt. Made from soft, breathable fabric, it's comfortable for all-day wear and features a classic design."
+  },
+  {
+    "id": "f6",
+    "name": "Utility Cargo Pants",
+    "category": "Bottoms",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/f6.jpg",
+    "description": "Practical and fashionable, these utility cargo pants are designed for comfort and functionality. Multiple pockets provide ample storage, while the durable fabric ensures longevity."
+  },
+  {
+    "id": "f7",
+    "name": "Bohemian Flowy Blouse",
+    "category": "Blouse",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/f7.jpg",
+    "description": "Discover effortless style with this bohemian flowy blouse. Its relaxed fit and intricate details make it a perfect addition for a chic, comfortable look."
+  },
+  {
+    "id": "f8",
+    "name": "Urban Graphic Tee",
+    "category": "T-Shirt",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/f8.jpg",
+    "description": "Express your style with this urban graphic tee. Featuring a unique design and soft cotton fabric, it's comfortable and stands out in any casual setting."
+  },
+  {
+    "id": "n1",
+    "name": "Blue Casual Shirt",
+    "category": "Casual",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/n1.jpg",
+    "description": "A classic blue casual shirt, perfect for everyday wear. Made from breathable fabric, it offers comfort and a timeless look."
+  },
+  {
+    "id": "n2",
+    "name": "Green Casual Shirt",
+    "category": "Casual",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/n2.jpg",
+    "description": "This green casual shirt is a fresh addition to your wardrobe. Its comfortable fit and vibrant color make it suitable for various casual outings."
+  },
+  {
+    "id": "n3",
+    "name": "White Casual Shirt",
+    "category": "Casual",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/n3.jpg",
+    "description": "A crisp white casual shirt, essential for any wardrobe. Its clean design and comfortable fabric make it versatile for both relaxed and semi-formal occasions."
+  },
+  {
+    "id": "n4",
+    "name": "Patterned Casual Shirt",
+    "category": "Casual",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/n4.jpg",
+    "description": "Stand out with this stylish patterned casual shirt. Its unique design and comfortable material ensure you look good and feel great."
+  },
+  {
+    "id": "n5",
+    "name": "Denim Casual Shirt",
+    "category": "Denim",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/n5.jpg",
+    "description": "A durable and fashionable denim casual shirt. Perfect for a rugged yet stylish look, it's a versatile piece that can be dressed up or down."
+  },
+  {
+    "id": "n6",
+    "name": "Grey Casual Shorts",
+    "category": "Shorts",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/n6.jpg",
+    "description": "Comfortable and practical grey casual shorts, ideal for warm weather. Made from soft fabric, they are perfect for everyday activities or lounging."
+  },
+  {
+    "id": "n7",
+    "name": "Brown Casual Shirt",
+    "category": "Casual",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/n7.jpg",
+    "description": "This brown casual shirt offers a warm and earthy tone to your collection. Its relaxed fit and soft fabric ensure maximum comfort."
+  },
+  {
+    "id": "n8",
+    "name": "Black Casual Shirt",
+    "category": "Casual",
+    "price": 100.00,
+    "stars": 5,
+    "image": "assets/images/products/n8.jpg",
+    "description": "A sleek black casual shirt, a must-have for any wardrobe. Its simple yet elegant design makes it suitable for various occasions, offering both style and comfort."
+  }
+]
