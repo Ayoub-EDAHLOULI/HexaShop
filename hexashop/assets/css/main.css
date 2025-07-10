@@ -45,13 +45,24 @@ html {
     max-width: 100vw; /* Ensure html does not exceed viewport width */
 }
 
+/* Animation for sections */
+.section-p1, .section-m1 {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-p1.visible, .section-m1.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 body {
     width: 100%;
     max-width: 100vw; /* Ensure body does not exceed viewport width */
     line-height: 1.6;
     color: var(--light-text-color);
     background-color: var(--white-color);
-    overflow-x: hidden; /* Prevent horizontal scrolling on the body */
 }
 
 body.menu-active {
@@ -71,15 +82,18 @@ h6 {
 h1 {
     font-size: 3.125rem;
     line-height: 1.2;
+
 }
 
 h2 {
     font-size: 2.875rem;
     line-height: 1.2;
+
 }
 
 h4 {
     font-size: 1.25rem;
+
 }
 
 h6 {
@@ -90,14 +104,17 @@ h6 {
 p {
     font-size: 1rem;
     margin: 0.9375rem 0 1.25rem 0;
+
 }
 
 .section-p1 {
     padding: var(--spacing-lg) var(--spacing-md);
+    border-top: 1px solid var(--border-color);
 }
 
 .section-m1 {
     margin: var(--spacing-lg) 0;
+    border-top: 1px solid var(--border-color);
 }
 
 .flex-center {
@@ -121,11 +138,13 @@ button.normal {
     border: none;
     outline: none;
     transition: 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 button.normal:hover {
     background-color: var(--primary-color);
     color: var(--white-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 button.white {
@@ -154,9 +173,15 @@ button.white:hover {
     background: var(--light-bg);
     box-shadow: var(--shadow-light);
     z-index: 999;
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     left: 0;
+    transition: box-shadow 0.3s ease;
+}
+
+#header.scrolled {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #header .logo {
@@ -230,6 +255,7 @@ button.white:hover {
 #hero button {
     background-image: url(../images/other/button.png);
     background-color: transparent;
+
     border: 0;
     color: #6a90a9;
     padding: 14px 18px 14px 65px;
@@ -237,13 +263,14 @@ button.white:hover {
 
 #feature {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around; /* Distribute items evenly */
     flex-wrap: wrap;
+    gap: 20px; /* Add gap between items */
 }
 
 #feature .fe-box {
-    flex-basis: 180px;
-    max-width: 100%;
+    flex-basis: auto; /* Let flexbox handle the width */
+    max-width: 180px; /* Set a max-width for consistency */
     flex-grow: 1;
     text-align: center;
     padding: 1.5625rem 0.9375rem;
@@ -251,11 +278,12 @@ button.white:hover {
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     margin: 0.9375rem 0;
-    transition: 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #feature .fe-box:hover {
     box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
 }
 
 #feature .fe-box img {
@@ -285,6 +313,13 @@ button.white:hover {
     min-height: 300px;
 }
 
+@media (min-width: 1200px) {
+    #product1 .pro-container,
+    #new-arrivals .pro-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 #product1 .pro,
 #new-arrivals .pro {
     
@@ -293,13 +328,16 @@ button.white:hover {
     border-radius: var(--border-radius-lg);
     cursor: pointer;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+
     transition: 0.3s ease;
     position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #product1 .pro:hover,
 #new-arrivals .pro:hover {
     box-shadow: 10px 10px 54px rgba(0, 0, 0, 0.06);
+    transform: translateY(-5px);
 }
 
 #product1 .pro img,
@@ -389,8 +427,9 @@ button.white:hover {
 
 #sm-banner {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around; /* Distribute items evenly */
     flex-wrap: wrap;
+    gap: 20px; /* Add gap between items */
     margin: var(--spacing-lg) var(--spacing-md);
 }
 
@@ -400,13 +439,19 @@ button.white:hover {
     justify-content: center;
     align-items: flex-start;
     background-image: url(../images/banner/b17.jpg);
-    flex-basis: 48%;
+    flex-basis: calc(50% - 20px); /* Adjust basis for gap */
     flex-grow: 1;
     height: 50vh;
     background-size: cover;
     background-position: center;
     padding: 1.875rem;
     margin-bottom: var(--spacing-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#sm-banner .banner-box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 #sm-banner .banner-box2 {
@@ -434,8 +479,9 @@ button.white:hover {
 
 #banner3 {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around; /* Distribute items evenly */
     flex-wrap: wrap;
+    gap: 20px; /* Add gap between items */
     padding: var(--spacing-md) var(--spacing-md);
 }
 
@@ -445,13 +491,19 @@ button.white:hover {
     justify-content: center;
     align-items: flex-start;
     background-image: url(../images/banner/b7.jpg);
-    flex-basis: 32%;
+    flex-basis: calc(33.333% - 20px); /* Adjust basis for gap */
     flex-grow: 1;
     height: 30vh;
     background-size: cover;
     background-position: center;
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#banner3 .banner-box:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
 #banner3 .banner-box2 {
@@ -484,7 +536,7 @@ button.white:hover {
     background-repeat: no-repeat;
     background-position: 20% 30%;
     background-color: var(--secondary-color);
-    padding: 0 var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-md); /* Increased padding */
 }
 
 #newsletter h4 {
@@ -508,6 +560,7 @@ button.white:hover {
 #newsletter .form {
     display: flex;
     width: 40%;
+
 }
 
 #newsletter input {
@@ -533,6 +586,7 @@ button.white:hover {
 footer {
     display: flex;
     justify-content: space-between;
+
     flex-wrap: wrap;
     padding: var(--spacing-lg) var(--spacing-md);
 }
@@ -594,6 +648,7 @@ footer .install img {
 footer .follow .icon i:hover,
 footer a:hover {
     color: var(--primary-color);
+
 }
 
 footer .copyright {
@@ -700,6 +755,7 @@ footer .copyright {
 #prodetails .sproDetails h4 {
     padding: 2.5rem 0 1.25rem 0;
 }
+
 
 #prodetails .sproDetails h2 {
     padding: var(--spacing-md) 0;
@@ -974,6 +1030,13 @@ footer .copyright {
     border-radius: var(--border-radius-sm);
     font-size: 1rem;
     color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#form-details form input:focus,
+#form-details form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(106, 144, 169, 0.5);
 }
 
 #form-details form textarea {
@@ -1929,61 +1992,62 @@ footer .copyright {
         width: 100%;
         margin: 1rem auto 0 auto;
     }
+}
 
-    #contact-details {
-        flex-direction: column;
-    }
+/* Checkout Page Styles */
+#checkout-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
-    #contact-details .details,
-    #contact-details .map {
-        width: 100%;
-        margin-bottom: var(--spacing-md);
-    }
+.form-container {
+    flex-basis: 60%;
+}
 
-    #form-details {
-        margin: var(--spacing-sm);
-        padding: var(--spacing-sm);
-        flex-direction: column;
-    }
+.order-summary {
+    flex-basis: 35%;
+    background-color: var(--light-bg);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+}
 
-    #form-details form,
-    #form-details .people {
-        width: 100%;
-    }
+.form-section {
+    margin-bottom: var(--spacing-lg);
+}
 
-    #form-details .people {
-        margin-top: var(--spacing-md);
-    }
+.form-section span {
+    font-size: 0.75rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--light-text-color);
+}
 
-    #cart-add {
-        flex-direction: column;
-        padding: var(--spacing-md) var(--spacing-sm);
-    }
+.form-section h2 {
+    font-size: 1.625rem;
+    line-height: 1.3;
+    padding: var(--spacing-md) 0;
+}
 
-    #coupon,
-    #subtotal {
-        width: 100%;
-        padding: var(--spacing-md);
-    }
+.form-container label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 600;
+}
 
-    #coupon input {
-        width: 60%;
-    }
+.form-container input {
+    width: 100%;
+    padding: 0.75rem 0.9375rem;
+    outline: none;
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-    #coupon button {
-        width: 40%;
-    }
-
-    #subtotal table td {
-        padding: var(--spacing-xs);
-        font-size: 0.75rem;
-    }
-
-    #subtotal table tr:last-child td {
-        font-size: 0.9rem;
-    }
-
-    #subtotal button {
-        padding: var(--spacing-sm);
-    }
+.form-container input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(106, 144, 169, 0.5);
 }

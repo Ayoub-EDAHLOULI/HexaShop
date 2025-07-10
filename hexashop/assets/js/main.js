@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
         displayCartItems();
         setupCartEventListeners();
     }
+    if (document.getElementById('checkout-container')) {
+        console.log('Calling displayCheckoutSummary.');
+        displayCheckoutSummary();
+    }
     console.log('Calling setupAccountDropdown.');
     setupAccountDropdown();
     console.log('Calling setupMobileMenu.');
@@ -40,6 +44,15 @@ document.addEventListener('DOMContentLoaded', function() {
     injectNotificationContainer();
     console.log('Calling updateCartCounter.');
     updateCartCounter();
+
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
 });
 
 function injectNotificationContainer() {
@@ -287,6 +300,29 @@ function displayCartItems() {
     }
 }
 
+function displayCheckoutSummary() {
+    const cart = getCart();
+    const summaryTable = document.getElementById('checkout-summary-table');
+    if (!summaryTable) return;
+
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+
+    summaryTable.innerHTML = `
+        <tr>
+            <td>Cart Subtotal</td>
+            <td>${subtotal}</td>
+        </tr>
+        <tr>
+            <td>Shipping</td>
+            <td>Free</td>
+        </tr>
+        <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>${subtotal}</strong></td>
+        </tr>
+    `;
+}
+
 function updateCartCounter() {
     const counter = document.getElementById('cart-counter');
     if (counter) {
@@ -401,9 +437,28 @@ function applyMobileClass() {
     }
 }
 
+// Function to handle scroll animations
+function handleScrollAnimations() {
+    const sections = document.querySelectorAll('.section-p1, .section-m1');
+    const triggerBottom = window.innerHeight / 5 * 4;
+
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop < triggerBottom) {
+            section.classList.add('visible');
+        } else {
+            section.classList.remove('visible');
+        }
+    });
+}
+
 // Call on load and resize
-document.addEventListener('DOMContentLoaded', applyMobileClass);
+document.addEventListener('DOMContentLoaded', () => {
+    applyMobileClass();
+    handleScrollAnimations(); // Initial check
+});
 window.addEventListener('resize', applyMobileClass);
+window.addEventListener('scroll', handleScrollAnimations);
 
 
 function validateNewsletterForm() {

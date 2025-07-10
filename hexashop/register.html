@@ -2,10 +2,9 @@
 <html lang="en">
 
 <head>
-    <base href="/HexaShop/hexashop/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>HexaShop | Register</title>
+    <title>HexaShop | Login</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 </head>
@@ -45,22 +44,16 @@
 
     <section id="form-details" class="section-p1">
         <form action="#" method="POST">
-            <span>CREATE AN ACCOUNT</span>
-            <h2>Register for a New Account</h2>
-            <label for="name" class="sr-only">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Your Name" required>
-
+            <span>LEAVE A MESSAGE</span>
+            <h2>Login To Your Account</h2>
             <label for="email" class="sr-only">E-mail</label>
             <input type="email" id="email" name="email" placeholder="E-mail" required>
 
             <label for="password" class="sr-only">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
-            
-            <label for="confirm-password" class="sr-only">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
 
-            <button type="submit" class="normal">Register</button>
-            <p>Already have an account? <a href="login.html">Login here</a></p>
+            <button type="submit" class="normal">Login</button>
+            <p>Don't have an account? <a href="register.html">Register here</a></p>
         </form>
     </section>
 
@@ -117,30 +110,26 @@
     <script src="assets/js/main.js"></script>
     <script>
         document.querySelector('#form-details form').addEventListener('submit', function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent default form submission
 
-            const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
 
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
+            // Get existing users from localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
 
-            let users = JSON.parse(localStorage.getItem('users')) || [];
+            // Check if user with this email and password exists
+            const user = users.find(user => user.email === email && user.password === password);
 
-            const userExists = users.some(user => user.email === email);
-
-            if (userExists) {
-                alert('This email is already registered. Please use a different email or login.');
+            if (user) {
+                alert('Login successful!');
+                // Store logged-in user info in localStorage
+                localStorage.setItem('jwtToken', btoa(email + ':' + password));
+                localStorage.setItem('loggedInUser', JSON.stringify({ name: user.name, email: user.email })); // Store user object with email and name
+                setupAccountDropdown();
+                window.location.href = 'index.html'; // Redirect to home page
             } else {
-                users.push({ name: name, email: email, password: password });
-                localStorage.setItem('users', JSON.stringify(users));
-                alert('Registration successful! You can now login.');
-                updateAccountDropdowns();
-                window.location.href = 'login.html';
+                alert('Invalid email or password.');
             }
         });
     </script>
