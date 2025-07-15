@@ -32,6 +32,7 @@
                     <ul class="dropdown-content">
                         <li><a href="update_profile.html">Edit Profile</a></li>
                         <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
                     </ul>
                 </li>
                 <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
@@ -46,92 +47,13 @@
     <section id="page-header" class="blog-header text-center">
         <h2>Read More</h2>
         <p>Stay updated with our latest fashion insights and product stories!</p>
+        <div class="search-container">
+            <input type="text" id="blog-search-input" placeholder="Search blog posts...">
+        </div>
     </section>
 
     <section id="blog" class="section-p1">
-        <article class="blog-box">
-            <div class="blog-img">
-                <img src="assets/images/blog/b1.jpg" alt="Blog Post Image: The Cotton-Jersey Zip-Up Hoodie">
-            </div>
-            <div class="blog-detail">
-                <h4>The Cotton-Jersey Zip-Up Hoodie: A Wardrobe Essential</h4>
-                <p>Discover why the classic cotton-jersey zip-up hoodie remains a staple in every modern wardrobe. Its versatility and comfort make it perfect for any season.</p>
-                <a href="#">Continue Reading</a>
-            </div>
-            <h1>13/01</h1>
-        </article>
-        <article class="blog-box">
-            <div class="blog-img">
-                <img src="assets/images/blog/b2.jpg" alt="Blog Post Image: Sustainable Fashion Trends">
-            </div>
-            <div class="blog-detail">
-                <h4>Embracing Sustainable Fashion: Trends for a Greener Future</h4>
-                <p>Explore the latest trends in sustainable fashion and how HexaShop is contributing to a more eco-conscious industry. Learn about ethical sourcing and eco-friendly materials.</p>
-                <a href="#">Continue Reading</a>
-            </div>
-            <h1>13/04</h1>
-        </article>
-        <article class="blog-box">
-            <div class="blog-img">
-                <img src="assets/images/blog/b3.jpg" alt="Blog Post Image: The Art of Accessorizing">
-            </div>
-            <div class="blog-detail">
-                <h4>The Art of Accessorizing: Elevate Your Style</h4>
-                <p>Unlock the secrets to perfect accessorizing. From statement jewelry to versatile scarves, learn how to transform any outfit with the right additions.</p>
-                <a href="#">Continue Reading</a>
-            </div>
-            <h1>12/01</h1>
-        </article>
-        <article class="blog-box">
-            <div class="blog-img">
-                <img src="assets/images/blog/b4.jpg" alt="Blog Post Image: Summer Style Guide">
-            </div>
-            <div class="blog-detail">
-                <h4>Your Ultimate Summer Style Guide for 2025</h4>
-                <p>Get ready for summer with our comprehensive style guide. Discover must-have pieces, color palettes, and outfit ideas to keep you chic and comfortable.</p>
-                <a href="#">Continue Reading</a>
-            </div>
-            <h1>16/05</h1>
-        </article>
-        <article class="blog-box">
-            <div class="blog-img">
-                <img src="assets/images/blog/b5.jpg" alt="Blog Post Image: Footwear Trends">
-            </div>
-            <div class="blog-detail">
-                <h4>Step Up Your Game: Latest Footwear Trends</h4>
-                <p>From sneakers to sandals, dive into the world of footwear and find out what's hot this season. We cover comfort, style, and durability.</p>
-                <a href="#">Continue Reading</a>
-            </div>
-            <h1>07/07</h1>
-        </article>
-        <article class="blog-box">
-            <div class="blog-img">
-                <img src="assets/images/blog/b6.jpg" alt="Blog Post Image: Winter Fashion Essentials">
-            </div>
-            <div class="blog-detail">
-                <h4>Winter Fashion Essentials: Stay Warm and Stylish</h4>
-                <p>Prepare for the colder months with our guide to winter fashion essentials. Learn how to layer effectively and choose the right fabrics for warmth and style.</p>
-                <a href="#">Continue Reading</a>
-            </div>
-            <h1>20/11</h1>
-        </article>
-        <article class="blog-box">
-            <div class="blog-img">
-                <img src="assets/images/blog/b7.jpg" alt="Blog Post Image: The Evolution of Denim">
-            </div>
-            <div class="blog-detail">
-                <h4>The Evolution of Denim: From Workwear to High Fashion</h4>
-                <p>Trace the fascinating journey of denim, from its humble beginnings as durable workwear to its current status as a high-fashion icon. Find your perfect pair.</p>
-                <a href="#">Continue Reading</a>
-            </div>
-            <h1>17/09</h1>
-        </article>
-    </section>
-
-    <section id="pagination" class="section-p1">
-        <a href="#" aria-label="Go to page 1">1</a>
-        <a href="#" aria-label="Go to page 2">2</a>
-        <a href="#" aria-label="Next page"><i class="fas fa-long-arrow-alt-right"></i></a>
+        <!-- Blog posts will be injected here -->
     </section>
 
     <section id="newsletter" class="section-p1 section-m1">
@@ -196,6 +118,66 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const blogSection = document.getElementById('blog');
+            const searchInput = document.getElementById('blog-search-input');
+
+            const fetchBlogPosts = async (searchTerm = '') => {
+                try {
+                    const response = await fetch('/api/blogs');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    let blogs = await response.json();
+
+                    if (searchTerm) {
+                        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+                        blogs = blogs.filter(blog =>
+                            blog.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+                            blog.content.toLowerCase().includes(lowerCaseSearchTerm) ||
+                            blog.author.toLowerCase().includes(lowerCaseSearchTerm)
+                        );
+                    }
+
+                    blogSection.innerHTML = ''; // Clear existing content
+
+                    if (blogs.length === 0) {
+                        blogSection.innerHTML = '<p>No blog posts found.</p>';
+                        return;
+                    }
+
+                    blogs.forEach(blog => {
+                        const blogPost = document.createElement('div');
+                        blogPost.classList.add('blog-box');
+                        blogPost.innerHTML = `
+                            <div class="blog-img">
+                                <img src="${blog.image}" alt="${blog.title}">
+                            </div>
+                            <div class="blog-details">
+                                <h4>${blog.title}</h4>
+                                <p>${blog.content.substring(0, 150)}...</p>
+                                <a href="#">CONTINUE READING</a>
+                            </div>
+                            <h1>${new Date(blog.date).getDate() < 10 ? '0' + new Date(blog.date).getDate() : new Date(blog.date).getDate()}/${new Date(blog.date).getMonth() + 1 < 10 ? '0' + (new Date(blog.date).getMonth() + 1) : (new Date(blog.date).getMonth() + 1)}</h1>
+                        `;
+                        blogSection.appendChild(blogPost);
+                    });
+                } catch (error) {
+                    console.error('Error fetching blog posts:', error);
+                    blogSection.innerHTML = '<p>Error loading blog posts.</p>';
+                }
+            };
+
+            // Initial fetch
+            fetchBlogPosts();
+
+            // Search functionality
+            searchInput.addEventListener('input', (event) => {
+                fetchBlogPosts(event.target.value);
+            });
+        });
+    </script>
 </body>
 
 </html>

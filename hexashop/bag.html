@@ -25,13 +25,12 @@
                     <ul class="dropdown-content">
                         <li><a href="login.html">Login</a></li>
                         <li><a href="register.html">Register</a></li>
-                    </ul>
-                </li>
                 <li id="account-dropdown-logged-in" class="account-dropdown">
                     <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-content">
                         <li><a href="update_profile.html">Edit Profile</a></li>
                         <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
                     </ul>
                 </li>
                 <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
@@ -97,7 +96,7 @@
                     <td><strong>$300</strong></td>
                 </tr>
             </table>
-            <button class="normal">Proceed To Checkout</button>
+            <button class="normal" id="proceed-to-checkout-btn">Proceed To Checkout</button>
         </div>
     </section>
 

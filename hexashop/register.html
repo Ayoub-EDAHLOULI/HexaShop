@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>HexaShop | Login</title>
+    <title>HexaShop | Register</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 </head>
@@ -19,6 +19,7 @@
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="bag.html" aria-label="Shopping Bag"><i class="fas fa-shopping-bag"></i><span id="cart-counter">0</span></a></li>
                 <li id="account-dropdown-logged-out" class="account-dropdown">
                     <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-content">
@@ -31,6 +32,7 @@
                     <ul class="dropdown-content">
                         <li><a href="update_profile.html">Edit Profile</a></li>
                         <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
                     </ul>
                 </li>
                 <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
@@ -43,17 +45,21 @@
     </header>
 
     <section id="form-details" class="section-p1">
-        <form action="#" method="POST">
-            <span>LEAVE A MESSAGE</span>
-            <h2>Login To Your Account</h2>
+        <form action="/api/register" method="POST">
+            <h2>Create Your Account</h2>
+            <label for="name" class="sr-only">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
             <label for="email" class="sr-only">E-mail</label>
             <input type="email" id="email" name="email" placeholder="E-mail" required>
 
             <label for="password" class="sr-only">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
 
-            <button type="submit" class="normal">Login</button>
-            <p>Don't have an account? <a href="register.html">Register here</a></p>
+            <label for="confirm-password" class="sr-only">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+
+            <button type="submit" class="normal">Register</button>
+            <p>Already have an account? <a href="login.html">Login here</a></p>
         </form>
     </section>
 
@@ -109,27 +115,57 @@
 
     <script src="assets/js/main.js"></script>
     <script>
-        document.querySelector('#form-details form').addEventListener('submit', function(event) {
+        document.querySelector('#form-details form').addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent default form submission
 
+            const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
 
-            // Get existing users from localStorage
-            const users = JSON.parse(localStorage.getItem('users')) || [];
+            // Client-side validation
+            if (name.length < 4) {
+                alert('Name must be at least 4 characters long.');
+                return;
+            }
 
-            // Check if user with this email and password exists
-            const user = users.find(user => user.email === email && user.password === password);
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return;
+            }
 
-            if (user) {
-                alert('Login successful!');
-                // Store logged-in user info in localStorage
-                localStorage.setItem('jwtToken', btoa(email + ':' + password));
-                localStorage.setItem('loggedInUser', JSON.stringify({ name: user.name, email: user.email })); // Store user object with email and name
-                setupAccountDropdown();
-                window.location.href = 'index.html'; // Redirect to home page
-            } else {
-                alert('Invalid email or password.');
+            // Password strength regex: at least one uppercase, one lowercase, one number, one special character
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/;
+            if (!passwordRegex.test(password)) {
+                alert('Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Password and Confirm Password do not match.');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message);
+                    window.location.href = 'login.html'; // Redirect to login page
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error during registration:', error);
+                alert('An error occurred during registration. Please try again.');
             }
         });
     </script>

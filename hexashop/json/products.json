@@ -1,0 +1,137 @@
+[
+  {
+    "id": "2",
+    "name": "Leaf Print T-Shirt Updated",
+    "category": "T-Shirts",
+    "price": 45,
+    "image": "assets/images/products/f2.jpg",
+    "stars": 5,
+    "description": "Trendy leaf print t-shirt, breathable fabric, ideal for summer. i update the description too"
+  },
+  {
+    "id": "3",
+    "name": "Floral Print T-Shirt",
+    "category": "T-Shirts",
+    "price": 59,
+    "image": "assets/images/products/f3.jpg",
+    "stars": 4,
+    "description": "Vibrant floral print t-shirt, soft and comfortable."
+  },
+  {
+    "id": "4",
+    "name": "Abstract Design T-Shirt",
+    "category": "T-Shirts",
+    "price": 65,
+    "image": "assets/images/products/f4.jpg",
+    "stars": 5,
+    "description": "Unique abstract design t-shirt, modern and eye-catching."
+  },
+  {
+    "id": "5",
+    "name": "Butterfly Print T-Shirt",
+    "category": "T-Shirts",
+    "price": 52,
+    "image": "assets/images/products/f5.jpg",
+    "stars": 3,
+    "description": "Charming butterfly print t-shirt, light and airy."
+  },
+  {
+    "id": "6",
+    "name": "Casual Shirt",
+    "category": "Shirts",
+    "price": 80,
+    "image": "assets/images/products/f6.jpg",
+    "stars": 4,
+    "description": "Versatile casual shirt, perfect for any occasion."
+  },
+  {
+    "id": "7",
+    "name": "Denim Jeans",
+    "category": "Bottoms",
+    "price": 95,
+    "image": "assets/images/products/f7.jpg",
+    "stars": 5,
+    "description": "Classic denim jeans, durable and comfortable."
+  },
+  {
+    "id": "8",
+    "name": "Cargo Pants",
+    "category": "Bottoms",
+    "price": 70,
+    "image": "assets/images/products/f8.jpg",
+    "stars": 4,
+    "description": "Practical cargo pants with multiple pockets."
+  },
+  {
+    "id": "9",
+    "name": "Men's Fashion T-Shirt",
+    "category": "T-Shirts",
+    "price": 60,
+    "image": "assets/images/products/n1.jpg",
+    "stars": 5,
+    "description": "Stylish men's fashion t-shirt, comfortable fit."
+  },
+  {
+    "id": "10",
+    "name": "Formal Shirt",
+    "category": "Shirts",
+    "price": 85,
+    "image": "assets/images/products/n2.jpg",
+    "stars": 4,
+    "description": "Elegant formal shirt, perfect for office or events."
+  },
+  {
+    "id": "11",
+    "name": "White Casual Shirt",
+    "category": "Shirts",
+    "price": 75,
+    "image": "assets/images/products/n3.jpg",
+    "stars": 4,
+    "description": "Classic white casual shirt, a wardrobe essential."
+  },
+  {
+    "id": "12",
+    "name": "Blue Denim Shirt",
+    "category": "Shirts",
+    "price": 90,
+    "image": "assets/images/products/n4.jpg",
+    "stars": 5,
+    "description": "Fashionable blue denim shirt, rugged and stylish."
+  },
+  {
+    "id": "13",
+    "name": "Striped T-Shirt",
+    "category": "T-Shirts",
+    "price": 45,
+    "image": "assets/images/products/n5.jpg",
+    "stars": 3,
+    "description": "Comfortable striped t-shirt, great for everyday wear."
+  },
+  {
+    "id": "14",
+    "name": "Polo Shirt",
+    "category": "Polo Shirts",
+    "price": 55,
+    "image": "assets/images/products/n6.jpg",
+    "stars": 4,
+    "description": "Classic polo shirt, smart casual look."
+  },
+  {
+    "id": "15",
+    "name": "Khaki Pants",
+    "category": "Bottoms",
+    "price": 70,
+    "image": "assets/images/products/n7.jpg",
+    "stars": 4,
+    "description": "Comfortable khaki pants, versatile for various outfits."
+  },
+  {
+    "id": "16",
+    "name": "Shorts",
+    "category": "Bottoms",
+    "price": 40,
+    "image": "assets/images/products/n8.jpg",
+    "stars": 3,
+    "description": "Lightweight shorts, perfect for summer activities."
+  }
+]

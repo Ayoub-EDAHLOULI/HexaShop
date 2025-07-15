@@ -32,6 +32,7 @@
                     <ul class="dropdown-content">
                         <li><a href="update_profile.html">Edit Profile</a></li>
                         <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
                     </ul>
                 </li>
                 <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
@@ -46,6 +47,19 @@
     <section id="page-header" class="text-center">
         <h2>Welcome to the Shop</h2>
         <p>Explore our wide range of products and find your perfect style!</p>
+        <div class="search-container">
+            <input type="text" id="shop-product-search" placeholder="Search products...">
+        </div>
+    </section>
+
+    <section id="category-filter" class="section-p1">
+        <div class="category-buttons">
+            <button class="normal category-btn active" data-category="all">All</button>
+            <button class="normal category-btn" data-category="t-shirts">T-Shirts</button>
+            <button class="normal category-btn" data-category="shirts">Shirts</button>
+            <button class="normal category-btn" data-category="pants">Pants</button>
+            <button class="normal category-btn" data-category="shoes">Shoes</n>
+        </div>
     </section>
 
     <section id="product1" class="section-p1 text-center">

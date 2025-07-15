@@ -32,6 +32,7 @@
                     <ul class="dropdown-content">
                         <li><a href="update_profile.html">Edit Profile</a></li>
                         <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
                     </ul>
                 </li>
                 <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
@@ -79,6 +80,32 @@
             <button class="normal">Add To Cart</button>
             <h4>Product Details</h4>
             <span>This Men's Fashion T-Shirt is crafted from premium, breathable cotton, offering ultimate comfort and style. Featuring a modern fit and durable stitching, it's perfect for everyday wear or a casual outing. Available in multiple sizes and designed to maintain its shape and color after washing.</span>
+        </div>
+    </section>
+
+    <section id="product-reviews" class="section-p1">
+        <h2>Customer Reviews</h2>
+        <div id="reviews-list">
+            <!-- Reviews will be loaded here -->
+        </div>
+
+        <div id="review-form-container">
+            <h3>Submit Your Review</h3>
+            <form id="review-form">
+                <input type="hidden" id="review-product-id">
+                <label for="review-rating">Rating:</label>
+                <select id="review-rating" required>
+                    <option value="">-- Select a rating --</option>
+                    <option value="5">5 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="2">2 Stars</option>
+                    <option value="1">1 Star</option>
+                </select>
+                <label for="review-comment">Comment:</label>
+                <textarea id="review-comment" rows="5" placeholder="Write your review here..." required></textarea>
+                <button type="submit" class="normal">Submit Review</button>
+            </form>
         </div>
     </section>
 

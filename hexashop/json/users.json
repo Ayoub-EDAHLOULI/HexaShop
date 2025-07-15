@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1752461565896",
+    "name": "yahya",
+    "email": "yahya@example.com",
+    "password": "$2b$10$nCIRgRBH5CvaY6G2fCLwIu6cyJPDe/EkWBKLn9A9XNYuE/fycZ2ge"
+  },
+  {
+    "id": "1752483169552",
+    "name": "yahya",
+    "email": "yahya2@example.com",
+    "password": "$2b$10$5U0NqYGCtyChst9eQujNROoAlVz3rzOXSMrJJEKEpQKtgZkJWq7LG"
+  },
+  {
+    "id": "1752503599611",
+    "name": "AYOUBED",
+    "email": "ayoub@example.com",
+    "password": "$2b$10$ZZdpU/90TXR7YBI/6JveEOoqsbehq8cbnY2JtkpJedm./aLyJzFYS"
+  }
+]

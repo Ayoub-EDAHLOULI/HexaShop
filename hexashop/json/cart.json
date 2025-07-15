@@ -1,0 +1,23 @@
+[
+  {
+    "userId": "1752503599611",
+    "items": [
+      {
+        "productId": "2",
+        "name": "Leaf Print T-Shirt Updated",
+        "price": 45,
+        "image": "assets/images/products/f2.jpg",
+        "quantity": 5,
+        "size": "M"
+      },
+      {
+        "productId": "3",
+        "name": "Floral Print T-Shirt",
+        "price": 59,
+        "image": "assets/images/products/f3.jpg",
+        "quantity": 6,
+        "size": "M"
+      }
+    ]
+  }
+]

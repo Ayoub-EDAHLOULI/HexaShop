@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "The Cotton-Jersey Zip-Up Hoodie",
+    "date": "2023-01-15",
+    "author": "Admin",
+    "image": "assets/images/blog/b1.jpg",
+    "content": "Kickstarter man braid godard coloring book. Raclette waistcoat selfies yr wolf chartreuse hexagon irony, godard..."
+  },
+  {
+    "id": 2,
+    "title": "Must-Have Skater Girl T-Shirts",
+    "date": "2023-02-02",
+    "author": "Admin",
+    "image": "assets/images/blog/b2.jpg",
+    "content": "Man bun PBR&B keytar copper mug prism, hell of helvetica. Synth crucifix offal deep v hella biodiesel. Church-key listicle polaroid put a bird on it chillwave palo santo."
+  },
+  {
+    "id": 3,
+    "title": "AW20 Menswear Trends",
+    "date": "2023-03-18",
+    "author": "Admin",
+    "image": "assets/images/blog/b3.jpg",
+    "content": "IPhone artisan direct trade blog, banjo raw denim pork belly messenger bag. Blue bottle listicle unicorn, waistcoat butcher."
+  },
+  {
+    "id": 4,
+    "title": "The Ultimate Guide to Choosing Your Perfect Pair of Jeans",
+    "date": "2023-04-10",
+    "author": "Admin",
+    "image": "assets/images/blog/b4.jpg",
+    "content": "Vinyl keytar pop-up, chartreuse trust fund street art swag affogato. Raclette hell of humblebrag, viral direct trade."
+  },
+  {
+    "id": 5,
+    "title": "This is my ayoub blog",
+    "author": "AYOUBED",
+    "date": "2005-10-15",
+    "image": "asetts/images/blog/b7.jpg",
+    "content": "This is the blog content"
+  }
+]

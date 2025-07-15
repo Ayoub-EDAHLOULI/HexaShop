@@ -19,6 +19,7 @@
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="bag.html" aria-label="Shopping Bag"><i class="fas fa-shopping-bag"></i><span id="cart-counter">0</span></a></li>
                 <li id="account-dropdown-logged-out" class="account-dropdown">
                     <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-content">
@@ -31,6 +32,7 @@
                     <ul class="dropdown-content">
                         <li><a href="update_profile.html">Edit Profile</a></li>
                         <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
                     </ul>
                 </li>
                 <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
@@ -114,24 +116,42 @@
 
     <script src="assets/js/main.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        document.addEventListener('DOMContentLoaded', async function() {
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
             const confirmPasswordInput = document.getElementById('confirm-password');
             const updateForm = document.getElementById('update-form');
 
-            if (!loggedInUser) {
+            // Fetch user profile data
+            const token = localStorage.getItem('jwtToken');
+            if (!token) {
                 alert('You must be logged in to view this page.');
                 window.location.href = 'login.html';
                 return;
             }
 
-            nameInput.value = loggedInUser.name;
-            emailInput.value = loggedInUser.email;
+            try {
+                const response = await fetch('/api/profile', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (response.ok) {
+                    const user = await response.json();
+                    nameInput.value = user.name;
+                    emailInput.value = user.email;
+                } else {
+                    alert('Failed to fetch user profile.');
+                    window.location.href = 'login.html';
+                }
+            } catch (error) {
+                console.error('Error fetching profile:', error);
+                alert('An error occurred while fetching your profile.');
+                window.location.href = 'login.html';
+            }
 
-            updateForm.addEventListener('submit', function(event) {
+            updateForm.addEventListener('submit', async function(event) {
                 event.preventDefault();
 
                 const newName = nameInput.value;
@@ -143,19 +163,42 @@
                     return;
                 }
 
-                let users = JSON.parse(localStorage.getItem('users')) || [];
-                const userIndex = users.findIndex(user => user.email === loggedInUser.email);
+                // Password strength regex: at least one uppercase, one lowercase, one number, one special character
+                const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{6,}$/;
+                if (newPassword && !passwordRegex.test(newPassword)) {
+                    alert('New password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
+                    return;
+                }
 
-                if (userIndex !== -1) {
-                    users[userIndex].name = newName;
-                    if (newPassword) {
-                        users[userIndex].password = newPassword;
+                const updateData = { name: newName };
+                if (newPassword) {
+                    updateData.newPassword = newPassword;
+                }
+
+                try {
+                    const response = await fetch('/api/profile', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify(updateData)
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert(data.message);
+                        // Optionally update localStorage if needed, or re-fetch profile
+                        // localStorage.setItem('loggedInUser', JSON.stringify(data.user));
+                        // For now, just reload to reflect changes
+                        location.reload();
+                    } else {
+                        alert(data.message);
                     }
-                    localStorage.setItem('users', JSON.stringify(users));
-                    localStorage.setItem('loggedInUser', JSON.stringify(users[userIndex])); // Update loggedInUser in localStorage
-                    alert('Profile updated successfully!');
-                } else {
-                    alert('Error: User not found.');
+                } catch (error) {
+                    console.error('Error updating profile:', error);
+                    alert('An error occurred while updating your profile. Please try again.');
                 }
             });
         });

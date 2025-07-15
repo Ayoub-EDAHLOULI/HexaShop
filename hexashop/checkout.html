@@ -25,13 +25,12 @@
                     <ul class="dropdown-content">
                         <li><a href="login.html">Login</a></li>
                         <li><a href="register.html">Register</a></li>
-                    </ul>
-                </li>
                 <li id="account-dropdown-logged-in" class="account-dropdown">
                     <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-content">
                         <li><a href="update_profile.html">Edit Profile</a></li>
                         <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
                     </ul>
                 </li>
                 <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
@@ -45,7 +44,7 @@
 
     <section id="checkout-container" class="section-p1">
         <div class="form-container">
-            <form action="#" method="POST">
+            <form id="checkout-form" action="/api/place-order" method="POST">
                 <div class="form-section">
                     <span>SHIPPING DETAILS</span>
                     <h2>Enter Your Shipping Information</h2>

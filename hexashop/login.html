@@ -19,6 +19,7 @@
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="bag.html" aria-label="Shopping Bag"><i class="fas fa-shopping-bag"></i><span id="cart-counter">0</span></a></li>
                 <li id="account-dropdown-logged-out" class="account-dropdown">
                     <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-content">
@@ -31,6 +32,7 @@
                     <ul class="dropdown-content">
                         <li><a href="update_profile.html">Edit Profile</a></li>
                         <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
                     </ul>
                 </li>
                 <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
@@ -109,27 +111,47 @@
 
     <script src="assets/js/main.js"></script>
     <script>
-        document.querySelector('#form-details form').addEventListener('submit', function(event) {
+        document.querySelector('#form-details form').addEventListener('submit', async function(event) {
             event.preventDefault(); // Prevent default form submission
 
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // Get existing users from localStorage
-            const users = JSON.parse(localStorage.getItem('users')) || [];
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
 
-            // Check if user with this email and password exists
-            const user = users.find(user => user.email === email && user.password === password);
+                const data = await response.json();
 
-            if (user) {
-                alert('Login successful!');
-                // Store logged-in user info in localStorage
-                localStorage.setItem('jwtToken', btoa(email + ':' + password));
-                localStorage.setItem('loggedInUser', JSON.stringify({ name: user.name, email: user.email })); // Store user object with email and name
-                setupAccountDropdown();
-                window.location.href = 'index.html'; // Redirect to home page
-            } else {
-                alert('Invalid email or password.');
+                if (response.ok) {
+                    localStorage.setItem('jwtToken', data.token);
+                    localStorage.setItem('isAdmin', data.isAdmin);
+                    alert(data.message);
+                    console.log('Login response data:', data); // Add this line for debugging
+                    const redirect = new URLSearchParams(window.location.search).get('redirect');
+                    const redirectProduct = JSON.parse(sessionStorage.getItem('redirectProduct'));
+                    if (data.isAdmin) {
+                        window.location.href = 'admin.html';
+                    } else if (redirectProduct) {
+                        await addToCart(redirectProduct.id, redirectProduct.name, redirectProduct.price, redirectProduct.image, redirectProduct.quantity, redirectProduct.size);
+                        sessionStorage.removeItem('redirectProduct');
+                        window.location.href = 'bag.html';
+                    } else if (redirect) {
+                        window.location.href = `${redirect}.html`;
+                    } else {
+                        window.location.href = 'index.html';
+                    }
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error('Error during login:', error);
+                alert('An error occurred during login. Please try again.');
             }
         });
     </script>

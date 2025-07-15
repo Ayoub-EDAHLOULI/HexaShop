@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>HexaShop | Admin Dashboard</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+</head>
+
+<body>
+    <header id="header">
+        <a href="index.html"><img src="assets/images/other/hexashopLogo.png" class="logo" alt="HexaShop Logo"></a>
+        <nav>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="bag.html" aria-label="Shopping Bag"><i class="fas fa-shopping-bag"></i><span id="cart-counter">0</span></a></li>
+                <li id="account-dropdown-logged-out" class="account-dropdown">
+                    <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </li>
+                <li id="account-dropdown-logged-in" class="account-dropdown">
+                    <a href="#" class="dropbtn">Account <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-content">
+                        <li><a href="update_profile.html">Edit Profile</a></li>
+                        <li><a href="#" id="logout-link">Logout</a></li>
+                        <li id="admin-dashboard-link" style="display: none;"><a href="admin.html">Admin Dashboard</a></li>
+                    </ul>
+                </li>
+                <a href="#" id="close" aria-label="Close Menu"><i class="far fa-times"></i></a>
+            </ul>
+        </nav>
+        <div id="mobile">
+            <a href="bag.html" aria-label="Shopping Bag"><i class="fas fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent" aria-label="Open Menu"></i>
+        </div>
+    </header>
+
+    <section id="page-header" class="text-center">
+        <h2>Admin Dashboard</h2>
+        <p>Manage products, users, and blog posts.</p>
+    </section>
+
+    <section id="admin-dashboard" class="section-p1">
+        <div class="dashboard-section">
+            <h3>Dashboard Metrics</h3>
+            <div id="metrics-container">
+                <div class="metric-card"><h4>Total Products</h4><p id="total-products">0</p></div>
+                <div class="metric-card"><h4>Total Users</h4><p id="total-users">0</p></div>
+                <div class="metric-card"><h4>Total Orders</h4><p id="total-orders">0</p></div>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <h3>Product Management</h3>
+            <div class="search-container">
+                <input type="text" id="product-search" placeholder="Search products...">
+            </div>
+            <button class="normal" id="add-product-btn">Add New Product</button>
+            <div class="table-responsive">
+                <table width="100%" id="product-table">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Image</td>
+                            <td>Name</td>
+                            <td>Category</td>
+                            <td>Price</td>
+                            <td>Stars</td>
+                            <td>Description</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Product rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Product Modal -->
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3 id="modal-title">Add Product</h3>
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <label for="product-name">Name</label>
+                    <input type="text" id="product-name" required>
+                    <label for="product-category">Category</label>
+                    <input type="text" id="product-category" required>
+                    <label for="product-price">Price</label>
+                    <input type="number" id="product-price" step="0.01" required>
+                    <label for="product-image">Image URL</label>
+                    <input type="text" id="product-image" required>
+                    <label for="product-stars">Stars (1-5)</label>
+                    <input type="number" id="product-stars" min="1" max="5" required>
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" rows="4" required></textarea>
+                    <button type="submit" class="normal">Save Product</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <h3>User Management</h3>
+            <div class="search-container">
+                <input type="text" id="user-search" placeholder="Search users...">
+            </div>
+            <div class="table-responsive">
+                <table width="100%" id="user-table">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Name</td>
+                            <td>Email</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- User rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <h3>Blog Post Management</h3>
+            <div class="search-container">
+                <input type="text" id="blog-search" placeholder="Search blog posts...">
+            </div>
+            <button class="normal" id="add-blog-post-btn">Add New Blog Post</button>
+            <div class="table-responsive">
+                <table width="100%" id="blog-table">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>Image</td>
+                            <td>Title</td>
+                            <td>Author</td>
+                            <td>Date</td>
+                            <td>Content</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Blog post rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Blog Post Modal -->
+        <div id="blog-post-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3 id="blog-modal-title">Add Blog Post</h3>
+                <form id="blog-post-form">
+                    <input type="hidden" id="blog-post-id">
+                    <label for="blog-post-title">Title</label>
+                    <input type="text" id="blog-post-title" required>
+                    <label for="blog-post-author">Author</label>
+                    <input type="text" id="blog-post-author" required>
+                    <label for="blog-post-date">Date</label>
+                    <input type="date" id="blog-post-date" required>
+                    <label for="blog-post-image">Image URL</label>
+                    <input type="text" id="blog-post-image" required>
+                    <label for="blog-post-content">Content</label>
+                    <textarea id="blog-post-content" rows="6" required></textarea>
+                    <button type="submit" class="normal">Save Blog Post</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="dashboard-section">
+            <h3>Order Management</h3>
+            <div class="table-responsive">
+                <table width="100%" id="order-table">
+                    <thead>
+                        <tr>
+                            <td>Order ID</td>
+                            <td>User ID</td>
+                            <td>Items</td>
+                            <td>Total Amount</td>
+                            <td>Status</td>
+                            <td>Actions</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Order rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up for Newsletters</h4>
+            <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+        </div>
+        <div class="form">
+            <input type="email" placeholder="Enter your email address" aria-label="Email address for newsletter signup">
+            <button class="normal">Sign Up</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img src="assets/images/other/hexashopLogo.png" class="logo" alt="HexaShop Logo">
+            <h4>Contact</h4>
+            <p><strong>Address:</strong> 123 Hexa Street, City, Country</p>
+            <p><strong>Phone:</strong> <a href="tel:+1234567890">+123 456 7890</a></p>
+            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Follow us on Pinterest"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" aria-label="Follow us on YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Order</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install App</h4>
+            <p>From App Store or Google Play</p>
+            <div class="row">
+                <img src="assets/images/pay/play.jpg" alt="Download on Google Play">
+                <img src="assets/images/pay/app.jpg" alt="Download on App Store">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="assets/images/pay/pay.png" alt="Payment Methods: Visa, Mastercard, PayPal">
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 HexaShop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/admin.js"></script>
+</body>
+
+</html>
